@@ -1,4 +1,5 @@
-from Account import Account
+from SignUp import SignUp
+from SignIn import SignIn
 import re
 
 def welcome():
@@ -25,15 +26,17 @@ def welcome():
             if len(password) <5 or not any(char.isdigit() for char in password):
                 print('Your password needs to have atleast 5 characters and a number')
                 return
-            account=Account(firstname,lastname,email,password)
-            account.signIn()
+            account=SignUp(firstname,lastname,email,password)
+            account.signUp()
         elif acc == 2:
             print('Enter account details')
+            account2=SignIn()
+            account2.signIn()
         elif acc ==3:
             print('No products available at te moment')
         else:
-            print('Invalid option, imput 1, 2 or 3')
+            print('Invalid option, input 1, 2 or 3')
     except ValueError:
-            print('Invalid option, imput 1, 2 or 3')
+            print('Invalid option, input 1, 2 or 3')
 
 welcome()

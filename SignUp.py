@@ -1,6 +1,6 @@
 import mysql.connector
 
-class Account():
+class SignUp():
     def __init__(self,firstname,lastname,email,password):
         self.firstname=firstname
         self.lastname=lastname
@@ -14,7 +14,7 @@ class Account():
             auth_plugin='mysql_native_password'
         )
         self.cursor = self.con.cursor()
-    def signIn(self):
+    def signUp(self):
         query = 'INSERT INTO `onlineshop` (`firstName`, `lastName`, `email`, `password`) VALUES(%s,%s,%s,%s)'
         values = (self.firstname,self.lastname,self.email,self.password)
         self.cursor.execute(query, values)
