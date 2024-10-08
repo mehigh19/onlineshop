@@ -1,6 +1,6 @@
 import mysql.connector
 
-class SignIn():
+class Account():
     def __init__(self):
         self.con = mysql.connector.connect(
             host='localhost',
@@ -10,6 +10,15 @@ class SignIn():
             auth_plugin='mysql_native_password'
         )
         self.cursor = self.con.cursor()
+
+    def signUp(self,firstname,lastname,email,password):
+        query = 'INSERT INTO `onlineshop` (`firstName`, `lastName`, `email`, `password`,`admin`) VALUES(%s,%s,%s,%s,%s)'
+        values = (firstname,lastname,email,password,0)
+        self.cursor.execute(query, values)
+        self.con.commit()
+        self.cursor.close()
+        self.con.close()
+        return 'Succesfully logged in'
 
     def signIn(self):
         email=input('Please input your email:  ')
