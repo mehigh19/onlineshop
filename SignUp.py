@@ -15,10 +15,9 @@ class SignUp():
         )
         self.cursor = self.con.cursor()
     def signUp(self):
-        query = 'INSERT INTO `onlineshop` (`firstName`, `lastName`, `email`, `password`) VALUES(%s,%s,%s,%s)'
-        values = (self.firstname,self.lastname,self.email,self.password)
+        query = 'INSERT INTO `onlineshop` (`firstName`, `lastName`, `email`, `password`,`admin`) VALUES(%s,%s,%s,%s,%s)'
+        values = (self.firstname,self.lastname,self.email,self.password,0)
         self.cursor.execute(query, values)
         self.con.commit()
         self.cursor.close()
         self.con.close()
-        print(query, values)

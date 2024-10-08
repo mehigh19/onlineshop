@@ -10,6 +10,7 @@ class SignIn():
             auth_plugin='mysql_native_password'
         )
         self.cursor = self.con.cursor()
+
     def signIn(self):
         email=input('Please input your email:  ')
         password=input('Please input your password:  ')
@@ -18,7 +19,15 @@ class SignIn():
         result = self.cursor.fetchone()
         self.cursor.close()
         self.con.close()
-        if result:
-            print('Loggin successful! You are connected')
-        else:
-            print('Loggin failed ! Email or password not found')
+        return result,email
+    
+    def checkAdmin(self,email):
+        query = 'SELECT admin, email FROM onlineshop WHERE admin = %s AND password = %s'
+        try:
+            self.cursor.execute(query, (1, email))
+            result = self.cursor.fetchone()
+            self.cursor.close()
+            self.con.close()
+            return result[0]
+        except Exception:
+            pass

@@ -8,7 +8,9 @@ def welcome():
             '\n1.Sign up'+
             '\n2.Sign in'+
             '\n3.Product list'+
+            '\n---------------'+
             '\n')
+    loggedIn=False
     try:
         acc=int(acc)
         if acc == 1:
@@ -29,9 +31,14 @@ def welcome():
             account=SignUp(firstname,lastname,email,password)
             account.signUp()
         elif acc == 2:
-            print('Enter account details')
             account2=SignIn()
-            account2.signIn()
+            result,email=account2.signIn()
+            if result:
+                print('Loggin successful! You are connected')
+                loggedIn=True
+                return loggedIn, email
+            else:
+                print('Loggin failed ! Email or password not found')
         elif acc ==3:
             print('No products available at te moment')
         else:
@@ -39,4 +46,10 @@ def welcome():
     except ValueError:
             print('Invalid option, input 1, 2 or 3')
 
-welcome()
+loggedIn,email=welcome()
+
+control=SignIn()
+admin=control.checkAdmin(email)
+
+if loggedIn==True and admin ==1:
+    print('all good')
