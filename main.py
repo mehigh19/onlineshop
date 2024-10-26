@@ -1,5 +1,7 @@
 from Account import Account
+from Product import Product
 import re
+import time
 
 def firstMenu():
     loggedIn=False
@@ -60,59 +62,56 @@ def secondMenu():
     if check == 'yes' or 'Yes':
         # userExit=False
         while True:
+            time.sleep(2)
             try:
+                product=Product()
                 if admin == 1:
                     acc=input('---------------'+
                             '\nInput a number:'+
                             '\n1.Product list'+
                             '\n2.Product details'+
                             '\n3.Place an order'+
-                            '\n4.Change an order'+
-                            '\n5.Change order info'+
-                            '\n6.Return'+
-                            '\n7.Complaints'+
-                            '\n8.Cancel an order'+
-                            '\n9.Exit'+
-                            '\n10.Add Product'+
+                            '\n4.Order Modification'+
+                            '\n5.Return'+
+                            '\n6.Complaints'+
+                            '\n7.Cancel an order'+
+                            '\n8.Exit'+
+                            '\n9.Add Product'+
                             '\n---------------'+
                             '\n')
-                    if int(acc) == 10:
+                    if int(acc) == 9:
                         print("Ok let's add some products")
+                        print(product.addProduct())
                 else:
                     acc=input('---------------'+
                             '\nInput a number:'+
                             '\n1.Product list'+
                             '\n2.Product details'+
                             '\n3.Place an order'+
-                            '\n4.Change an order'+
-                            '\n5.Change order info'+
-                            '\n6.Return'+
-                            '\n7.Complaints'+
-                            '\n8.Cancel an order'+
-                            '\n9.Exit'+
+                            '\n4.Order Modification'+
+                            '\n5.Return'+
+                            '\n6.Complaints'+
+                            '\n7.Cancel an order'+
+                            '\n8.Exit'+
                             '\n---------------'+
                             '\n')
                 acc = int(acc)
                 if acc == 1:
-                    print('No products available at te moment')
+                    product.productList()
                 elif acc == 2:
-                    print('No products available at te moment')
+                    print(product.productDetails())
                 elif acc == 3:
-                    print('Order closed at the moment')
+                    print(product.productOrder())
                 elif acc == 4:
-                    print('Order closed at the moment')
+                    print(product.orderInfo())
                 elif acc == 5:
-                    print('Order closed at the moment')
+                    print(product.returnProduct())
                 elif acc == 6:
-                    print('Order closed at the moment')
+                    print(product.complaints())
                 elif acc == 7:
-                    print('No products available at te moment')
+                    print(product.cancelOrder())
                 elif acc == 8:
-                    print('Order closed at the moment')
-                elif acc == 9:
                     return
-                else:
-                    print('Invalid option')
             except ValueError:
                     print('Invalid option, input one of the numbers that is shown in the menu')
 
